@@ -28,6 +28,7 @@ func NewApp(version string, start time.Time) (app *cli.App) {
 	app.Flags = cli.FlagsByName{
 		&cli.BoolFlag{
 			Name:    "skip-existing",
+			Value:   true,
 			EnvVars: []string{"GPCD_SKIP_EXISTING"},
 			Usage:   "skip existing files whose size matches the remote file size",
 		},

@@ -53,21 +53,21 @@ PowerShell:
 ```powershell
 $env:GPCD_BEARER_TOKEN = "YOUR_TOKEN"
 gpcd --local-path ./medias --from "2022-10-24T00:00:00Z" list
-gpcd --skip-existing --local-path ./medias --from "2022-10-24T00:00:00Z" download
+gpcd --local-path ./medias --from "2022-10-24T00:00:00Z" download
 ```
 
 Bash:
 
 ```sh
 export GPCD_BEARER_TOKEN="YOUR_TOKEN"
-gpcd --skip-existing --local-path ./medias download
+gpcd --local-path ./medias download
 ```
 
 Global options go before the command. Run `gpcd --help` for the complete help.
 
 | Option | Environment variable | Behavior |
 | --- | --- | --- |
-| `--skip-existing` | `GPCD_SKIP_EXISTING` | Skip final files whose size matches the remote size; default false |
+| `--skip-existing` | `GPCD_SKIP_EXISTING` | Skip final files whose size matches the remote size; default true |
 | `--local-path` | `GPCD_LOCAL_PATH` | Output directory; default `./medias` |
 | `--bearer-token` | `GPCD_BEARER_TOKEN` | GoPro Cloud authentication token |
 | `--api-endpoint` | `GPCD_API_ENDPOINT` | API endpoint; default `https://api.gopro.com/media/` |
@@ -87,7 +87,7 @@ contents but equal sizes will be skipped. Use the same output directory when
 rerunning downloads. Only final files count as completed; `.partN` files remain
 resumable. Keep the worker count unchanged when resuming a partial download.
 
-Enable the flag through the environment with `GPCD_SKIP_EXISTING=true`.
+Skipping existing files is enabled by default. To download them again, use `--skip-existing=false` before the command or set `GPCD_SKIP_EXISTING=false`.
 
 ## Supported media and errors
 

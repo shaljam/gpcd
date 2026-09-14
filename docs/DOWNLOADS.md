@@ -16,10 +16,10 @@ than being mistaken for a missing variation. Refresh your bearer token if needed
 
 ## Existing files
 
-Run `gpcd --skip-existing --local-path ./medias download` to avoid transferring
+Existing files are checked by default. Run `gpcd --local-path ./medias download` to avoid transferring
 files already present at the correct size. This still requests GoPro download
 metadata and remote HEAD headers. It compares the local final file size with the
-remote Content-Length, not hashes or timestamps.
+remote Content-Length, not hashes or timestamps. To disable skipping, use `--skip-existing=false` before the command or set `GPCD_SKIP_EXISTING=false`.
 
 If remote HEAD fails, is unsupported, omits Content-Length, or describes an
 encoded representation, gpcd cannot confirm size equality and downloads normally.
