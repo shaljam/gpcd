@@ -1,6 +1,6 @@
 NAME          := gpcd
 FILES         := $(shell git ls-files */*.go)
-REPOSITORY    := mvisonneau/$(NAME)
+REPOSITORY    := shaljam/$(NAME)
 .DEFAULT_GOAL := help
 
 .PHONY: setup

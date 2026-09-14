@@ -10,6 +10,7 @@ on:
 
 jobs:
   release:
+    if: github.repository == 'mvisonneau/gpcd'
     runs-on: ubuntu-latest
 
     env:

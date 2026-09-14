@@ -16,8 +16,10 @@ type Media struct {
 type MediaType string
 
 const (
-	MediaTypeVideo MediaType = "Video"
-	MediaTypePhoto MediaType = "Photo"
+	MediaTypeVideo          MediaType = "Video"
+	MediaTypeTimeLapseVideo MediaType = "TimeLapseVideo"
+	MediaTypePhoto          MediaType = "Photo"
+	MediaTypeBurst          MediaType = "Burst"
 
 	// TODO: Add missed ones.
 )

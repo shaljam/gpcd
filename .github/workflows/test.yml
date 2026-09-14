@@ -1,46 +1,40 @@
----
 name: test
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   test:
     strategy:
       matrix:
-        os:
-          - ubuntu-22.04
-
+        os: [ubuntu-latest, windows-latest]
+        go: ['1.19', stable]
     runs-on: ${{ matrix.os }}
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Go
-        uses: actions/setup-go@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
-          go-version: 1.19
-
-      - name: Lint
-        if: ${{ matrix.os == 'ubuntu-22.04' }}
-        run: make lint
-
+          go-version: ${{ matrix.go }}
+      - name: Vet
+        run: go vet ./...
       - name: Test
-        run: make coverage
-
-      - name: Publish coverage to coveralls.io
-        uses: shogo82148/actions-goveralls@v1
-        if: ${{ matrix.os == 'ubuntu-22.04' }}
-        with:
-          path-to-profile: coverage.out
-
+        run: go test ./...
+      - name: Race test
+        if: runner.os == 'Linux'
+        run: go test -race ./...
       - name: Build
-        run: make build
+        run: go build ./cmd/gpcd
+      - name: Verify installable module
+        shell: bash
+        run: |
+          if grep -Eq '^[[:space:]]*(replace|exclude)([[:space:]]|$)' go.mod; then
+            echo "Versioned go install must not require replacements or exclusions"
+            exit 1
+          fi
+          go install ./cmd/gpcd

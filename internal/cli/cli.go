@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/mvisonneau/gpcd/internal/cmd"
+	"github.com/shaljam/gpcd/internal/cmd"
 	"github.com/urfave/cli/v2"
 )
 
@@ -26,6 +26,11 @@ func NewApp(version string, start time.Time) (app *cli.App) {
 	app.EnableBashCompletion = true
 
 	app.Flags = cli.FlagsByName{
+		&cli.BoolFlag{
+			Name:    "skip-existing",
+			EnvVars: []string{"GPCD_SKIP_EXISTING"},
+			Usage:   "skip existing files whose size matches the remote file size",
+		},
 		&cli.StringFlag{
 			Name:    "api-endpoint",
 			EnvVars: []string{"GPCD_API_ENDPOINT"},

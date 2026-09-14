@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/mvisonneau/gpcd/internal/cli"
+	"github.com/shaljam/gpcd/internal/cli"
 )
 
 var version = ""

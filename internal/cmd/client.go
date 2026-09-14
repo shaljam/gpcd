@@ -20,6 +20,7 @@ type Client struct {
 	APIEndpoint    string
 	RequestHeaders map[string]string
 	Concurrency    int
+	SkipExisting   bool
 }
 
 func NewClient(apiEndpoint, bearerToken, userAgent string, concurrency int) *Client {
