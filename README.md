@@ -73,7 +73,7 @@ Global options go before the command. Run `gpcd --help` for the complete help.
 | `--api-endpoint` | `GPCD_API_ENDPOINT` | API endpoint; default `https://api.gopro.com/media/` |
 | `--user-agent` | `GPCD_USER_AGENT` | User-Agent used for GoPro API requests |
 | `--from`, `--to` | — | Filter capture times using RFC3339 timestamps |
-| `--max-concurrent-downloads` | — | Download workers per file; default CPU count |
+| `--max-concurrent-downloads` | — | Download workers per file; default 4 |
 
 ## Skip existing files
 

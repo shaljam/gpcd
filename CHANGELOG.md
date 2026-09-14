@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Default `--max-concurrent-downloads` to 4 workers per file instead of CPU count.
+
 - Add `--skip-existing` and `GPCD_SKIP_EXISTING` to skip final files whose
   local and remote sizes match. Enabled by default; use `--skip-existing=false` to disable.
 - Support `TimeLapseVideo` using video resolution matching and `Burst` using

@@ -2,7 +2,6 @@ package cli
 
 import (
 	"log"
-	"runtime"
 	"time"
 
 	"github.com/shaljam/gpcd/internal/cmd"
@@ -66,7 +65,7 @@ func NewApp(version string, start time.Time) (app *cli.App) {
 		},
 		&cli.IntFlag{
 			Name:  "max-concurrent-downloads",
-			Value: runtime.NumCPU(),
+			Value: 4,
 		},
 	}
 
